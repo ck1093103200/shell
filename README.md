@@ -1,6 +1,4 @@
-# shell
-shell 学习
-
+# VIM
 ## 使用方法 
 
 ```
