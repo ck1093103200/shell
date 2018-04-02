@@ -1,0 +1,128 @@
+" ~/.vimrc
+" vim config file
+" data 20180402
+" """"""""""""""""""""""
+" 全局配置
+" """"""""""""""""""""""
+" 关闭兼容模式
+set nocompatible
+
+" 设置历史记录步数
+set history=100
+
+" 开启相关插件
+filetype on
+filetype plugin on
+filetype indent on
+
+"当文件在外部被修改时，自动更新该文件
+set autoread
+
+" 激活鼠标使用
+set mouse=a
+
+" """"""""""""""""""""""
+" => 字体和颜色
+" """""""""""""""""""""""
+"开启语法
+
+syntax enable
+
+" 设置字体
+" set guifont=dejaVu\ Sans\ MONO\ 10
+"
+" "设置配置
+" colorscheme desert
+
+" 高亮显示当前行
+set cursorline
+hi cursorline guibg=#00ff00
+hi CursorColumn guibg=#00ff00
+
+" """"""""""""""""""""""
+" " => 代码这点功能
+" """"""""""""""""""""""
+" 激活折叠功能
+set foldenable
+
+" 设置语法折叠方式
+set foldcolumn=0
+
+" 设置折叠数为3
+setlocal foldlevel=3
+
+" 设置自动关闭折叠
+
+set foldclose=all
+
+" 用空格键来代替zo和zc
+" zo O-pen a fold (打开折叠)
+" zc C-lose a fold (关闭折叠)
+" zf F-old createion (创建折叠)
+nnoremap <space> @=((foldclosed(line('.')) < 0) ? 'zc' : 'zo')<CR> 
+
+" 设置所有的Tab和缩进为2个空格
+set expandtab
+set tabstop=2
+
+" 设置 << 和 >> 命令移动时宽度为2
+set shiftwidth=2
+" 使用退格时一次删掉2个空格
+set shiftwidth=2
+set softtabstop=2
+set smarttab
+
+" 自动缩进
+set ai
+
+" 智能缩进
+set si
+
+" 自动换行
+set wrap
+
+" 显示行数
+set nu
+set lz
+set magic
+set noerrorbells
+set showmatch
+" How many tenths of a second to blink
+set mat=2
+" 搜索时高亮显示搜索的内容
+set hlsearch
+set ignorecase
+""""""""""""""""""""""""""""
+" 编码设置
+""""""""""""""""""""""""""""
+" 设置编码
+set encoding=utf-8
+" 设置文件编码
+set fileencodings=utf-8
+" 设置终端编码
+set termencoding=utf-8
+" 开启新行时使用只能自动缩进
+set smartindent
+set cin
+set showmatch
+" 隐藏工具栏
+set guioptions-=T
+" 隐藏菜单栏
+set guioptions-=m
+set vb t_vb=
+" 显示状态栏（默认为1，不显示状态栏）
+set laststatus=2
+" 粘贴不换行问题的解决方法
+set pastetoggle=<F9>
+set background=dark
+" 设置高亮相关
+highlight Search ctermbg=black ctermfg=white guifg=white guibg=black
+autocmd BufNewFile *.py,*.cc,*.sh,*.java exec ":call SetTitle()"
+func SetTitle()
+    if expand("%:e") == 'sh'
+        call setline(1, "#!/bin/bash")
+        call setline(2, "#Authir:ck")
+        call setline(3, "#Time:".strftime("%F %T"))
+        call setline(4, "#Name:".expand("%"))
+    endif
+endfunc
